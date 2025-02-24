@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Personas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -10,6 +11,19 @@
     <h1>Lista de Personas</h1>
   </header>
   <main>
+    <form id="form-login" action="login.php" method="post" style="display: none;">
+      <input type="text" name="username" placeholder="Usuario" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <form id="form-agregar-persona" style="display: none;">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellido" placeholder="Apellido" required>
+      <input type="number" id="edad" placeholder="Edad" required>
+      <input type="text" id="lugarNacimiento" placeholder="Lugar de Nacimiento" required>
+      <input type="text" id="lugarFallecimiento" placeholder="Lugar de Fallecimiento">
+      <button type="submit">Agregar Persona</button>
+    </form>
     <ul id="personas-list"></ul>
   </main>
   <footer>
@@ -17,10 +31,26 @@
   </footer>
   
   <script>
+    // Función para mostrar u ocultar formularios según si el usuario está autenticado
+    function mostrarFormularios(autenticado) {
+      const formLogin = document.getElementById('form-login');
+      const formAgregarPersona = document.getElementById('form-agregar-persona');
+      if (autenticado) {
+        formLogin.style.display = 'none';
+        formAgregarPersona.style.display = 'block';
+      } else {
+        formLogin.style.display = 'block';
+        formAgregarPersona.style.display = 'none';
+      }
+    }
+
+    // Llamada inicial para establecer el estado del formulario
+    mostrarFormularios(false);
+
     // Función para obtener la lista de personas desde el servidor
     async function obtenerPersonas() {
       try {
-        const response = await fetch('http://localhost:3000/api/personas');  // Update this line
+        const response = await fetch('http://localhost:3000/api/personas');
         if (!response.ok) {
           throw new Error('Error en la solicitud a la API');
         }
@@ -37,7 +67,7 @@
       lista.innerHTML = '';
       personas.forEach(persona => {
         const item = document.createElement('li');
-        item.textContent = `${persona.nombre} ${persona.apellido}, ${persona.edad} años, nacido en ${persona.lugarNacimiento}`;
+        item.textContent = `${persona.nombre} ${persona.apellido}, ${persona.edad} años, nacido en ${persona.lugarNacimiento} falleció en ${persona.lugarFallecimiento}`;
         lista.appendChild(item);
       });
     }
