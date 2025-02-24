@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Personas</title>
+</head>
+<body>
+  <h1>Lista de Personas</h1>
+  <ul id="personas-list"></ul>
+  
+  <script>
+    // Función para obtener la lista de personas desde el servidor
+    async function obtenerPersonas() {
+      try {
+        const response = await fetch('http://localhost:3000/api/personas');
+        const personas = await response.json();
+        mostrarPersonas(personas);
+      } catch (error) {
+        console.error('Error al obtener la lista de personas:', error);
+      }
+    }
+
+    // Función para mostrar la lista de personas en la página
+    function mostrarPersonas(personas) {
+      const lista = document.getElementById('personas-list');
+      lista.innerHTML = '';
+      personas.forEach(persona => {
+        const item = document.createElement('li');
+        item.textContent = `${persona.nombre} ${persona.apellido}, ${persona.edad} años, nacido en ${persona.lugarNacimiento}`;
+        lista.appendChild(item);
+      });
+    }
+
+    // Llamar a la función para obtener y mostrar las personas cuando se carga la página
+    obtenerPersonas();
+  </script>
+</body>
+</html>
