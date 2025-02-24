@@ -20,7 +20,7 @@
     // Función para obtener la lista de personas desde el servidor
     async function obtenerPersonas() {
       try {
-        const response = await fetch('http://localhost:3000/api/personas');
+        const response = await fetch('http://localhost:3000/api/personas');  // Update this line
         if (!response.ok) {
           throw new Error('Error en la solicitud a la API');
         }
