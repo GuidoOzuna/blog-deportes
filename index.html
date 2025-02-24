@@ -3,16 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Personas</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Lista de Personas</h1>
-  <ul id="personas-list"></ul>
+  <header>
+    <h1>Lista de Personas</h1>
+  </header>
+  <main>
+    <ul id="personas-list"></ul>
+  </main>
+  <footer>
+    <p>&copy; 2025 Tu Nombre</p>
+  </footer>
   
   <script>
     // Función para obtener la lista de personas desde el servidor
     async function obtenerPersonas() {
       try {
         const response = await fetch('http://localhost:3000/api/personas');
+        if (!response.ok) {
+          throw new Error('Error en la solicitud a la API');
+        }
         const personas = await response.json();
         mostrarPersonas(personas);
       } catch (error) {
