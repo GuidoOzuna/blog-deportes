@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');  // Requiere el paquete cors
 const app = express();
 const port = 3000;
+
+app.use(cors());  // Usa CORS
 
 const partidos = [
   { fecha: 1, equipoLocal: 'Olimpia', equipoVisitante: 'Cerro Porteño', resultado: '2-1' },
