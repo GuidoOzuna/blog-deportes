@@ -1,14 +1,18 @@
 {
-  "name": "mi-proyecto",
+  "name": "blog-deportes",
   "version": "1.0.0",
-  "description": "Proyecto simple con Node.js y Express en Acode",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.18.2"
-  },
+  "description": "API REST para el Torneo Apertura del fútbol paraguayo 2025",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "author": "Tu Nombre",
-  "license": "MIT"
+  "author": "TuNombreDeUsuario",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
