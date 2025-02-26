@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${equipo.equipo}</td>
+          <td>${equipo.partidosJugados}</td>
           <td>${equipo.puntos}</td>
           <td>${equipo.ganados}</td>
           <td>${equipo.empatados}</td>

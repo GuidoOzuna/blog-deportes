@@ -21,17 +21,19 @@ partidos.forEach(partido => {
   const [golesLocal, golesVisitante] = partido.resultado.split('-').map(Number);
 
   if (!equipos[partido.equipoLocal]) {
-    equipos[partido.equipoLocal] = { puntos: 0, ganados: 0, perdidos: 0, empatados: 0, golesAFavor: 0, golesEnContra: 0 };
+    equipos[partido.equipoLocal] = { puntos: 0, ganados: 0, perdidos: 0, empatados: 0, golesAFavor: 0, golesEnContra: 0, partidosJugados: 0 };
   }
 
   if (!equipos[partido.equipoVisitante]) {
-    equipos[partido.equipoVisitante] = { puntos: 0, ganados: 0, perdidos: 0, empatados: 0, golesAFavor: 0, golesEnContra: 0 };
+    equipos[partido.equipoVisitante] = { puntos: 0, ganados: 0, perdidos: 0, empatados: 0, golesAFavor: 0, golesEnContra: 0, partidosJugados: 0 };
   }
 
   equipos[partido.equipoLocal].golesAFavor += golesLocal;
   equipos[partido.equipoVisitante].golesAFavor += golesVisitante;
   equipos[partido.equipoLocal].golesEnContra += golesVisitante;
   equipos[partido.equipoVisitante].golesEnContra += golesLocal;
+  equipos[partido.equipoLocal].partidosJugados += 1;
+  equipos[partido.equipoVisitante].partidosJugados += 1;
 
   if (golesLocal > golesVisitante) {
     equipos[partido.equipoLocal].puntos += 3;
