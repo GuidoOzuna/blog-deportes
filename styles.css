@@ -34,8 +34,7 @@ h1 {
 }
 
 table {
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
   margin: 20px auto;
   border-collapse: collapse;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -64,6 +63,7 @@ nav ul {
   margin: 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;  /* Allows items to wrap */
 }
 
 nav ul li {
@@ -91,15 +91,44 @@ footer {
 }
 
 @media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+
   nav ul {
-    flex-direction: column;
+    flex-direction: row;  /* Keeps menu horizontal */
+    justify-content: center;
   }
 
   nav ul li {
-    margin: 5px 0;
+    margin: 5px;
   }
 
   #partidos, #tabla, table {
     width: 100%;
+  }
+
+  .partido, th, td {
+    font-size: 14px;  /* Reduces font size for mobile */
+    padding: 8px;  /* Reduces padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .partido, th, td {
+    font-size: 12px;  /* Further reduces font size for very small screens */
+    padding: 6px;  /* Further reduces padding for very small screens */
+  }
+
+  nav ul li {
+    margin: 2px;
+  }
+
+  footer {
+    font-size: 12px;
   }
 }
