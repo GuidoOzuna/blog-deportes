@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "TuNombreDeUsuario",
+  "author": "Gromorg",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
