@@ -6,13 +6,21 @@ const port = 3000;
 app.use(cors());
 
 const partidos = [
+  // Fecha 1
   { fecha: 1, equipoLocal: 'Sportivo Trinidense', equipoVisitante: 'Sportivo Ameliano', resultado: '1-2' },
   { fecha: 1, equipoLocal: 'Sportivo Luqueño', equipoVisitante: 'Atlético Tembetary', resultado: '1-1' },
   { fecha: 1, equipoLocal: '2 de Mayo', equipoVisitante: 'Nacional', resultado: '0-0' },
   { fecha: 1, equipoLocal: 'General Caballero JLM', equipoVisitante: 'Deportivo Recoleta', resultado: '2-2'},
-  { fecha: 1, equipoLocal: 'Olimpia', equipoVisitante: 'Guarani', resultado: '0-1'},
+  { fecha: 1, equipoLocal: 'Olimpia', equipoVisitante: 'Guaraní', resultado: '0-1'},
   { fecha: 1, equipoLocal: 'Cerro Porteño', equipoVisitante: 'Libertad', resultado: '0-0'},
-  // Agrega más partidos aquí con la correspondiente fecha
+  // Fecha 2
+  { fecha: 2, equipoLocal: 'Atlético Tembetary', equipoVisitante: 'Sportivo Trinidense', resultado: '2-2' },
+  { fecha: 2, equipoLocal: 'Deportivo Recoleta', equipoVisitante: '2 de Mayo', resultado: '0-2' },
+  { fecha: 2, equipoLocal: 'Sportivo Luqueño', equipoVisitante: 'Cerro Porteño', resultado: '1-1' },
+  { fecha: 2, equipoLocal: 'Nacional', equipoVisitante: 'Libertad', resultado: '0-3'},
+  { fecha: 2, equipoLocal: 'Guaraní', equipoVisitante: 'General Caballero JLM', resultado: '2-1'},
+  { fecha: 2, equipoLocal: 'Sportivo Ameliano', equipoVisitante: 'Olimpia', resultado: '2-2'},
+  // Fecha 3
 ];
 
 const equipos = {};

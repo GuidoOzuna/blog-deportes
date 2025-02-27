@@ -81,7 +81,10 @@ nav ul li a {
 nav ul li a:hover {
   background-color: #555;
 }
-
+/* Agregar margen a los títulos de fecha */
+h2 {
+  margin: 20px 0;
+}
 footer {
   background-color: #333;
   color: #fff;

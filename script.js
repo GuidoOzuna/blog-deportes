@@ -3,11 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
       const partidosDiv = document.getElementById('partidos');
-      data.forEach(partido => {
-        const partidoElement = document.createElement('div');
-        partidoElement.className = 'partido';
-        partidoElement.textContent = `Fecha ${partido.fecha}: ${partido.equipoLocal} vs ${partido.equipoVisitante}: ${partido.resultado}`;
-        partidosDiv.appendChild(partidoElement);
+      const partidosPorFecha = data.reduce((acc, partido) => {
+        if (!acc[partido.fecha]) {
+          acc[partido.fecha] = [];
+        }
+        acc[partido.fecha].push(partido);
+        return acc;
+      }, {});
+
+      Object.keys(partidosPorFecha).forEach(fecha => {
+        const fechaTitulo = document.createElement('h2');
+        fechaTitulo.textContent = `Fecha ${fecha}`;
+        partidosDiv.appendChild(fechaTitulo);
+
+        partidosPorFecha[fecha].forEach(partido => {
+          const partidoElement = document.createElement('div');
+          partidoElement.className = 'partido';
+          partidoElement.textContent = `${partido.equipoLocal} vs ${partido.equipoVisitante}: ${partido.resultado}`;
+          partidosDiv.appendChild(partidoElement);
+        });
       });
     })
     .catch(error => console.error('Error:', error));
