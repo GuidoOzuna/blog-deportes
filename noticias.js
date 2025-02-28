@@ -1,17 +1,37 @@
-const componentes = [
-  {
-    id: 1,
-    nombre: 'Resistor',
-    descripcion: 'Un resistor es un componente electrónico pasivo...',
-    imagen: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Resitor.jpg'
-  },
-  {
-    id: 2,
-    nombre: 'Capacitor',
-    descripcion: 'Un capacitor es un dispositivo que almacena energía eléctrica...',
-    imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Capacitors_%287189597135%29.jpg/1280px-Capacitors_%287189597135%29.jpg'
-  },
-  // Agrega más componentes aquí
+const express = require('express');
+const router = express.Router();
+
+// Datos ficticios de noticias
+const noticias = [
+    {
+        id: 1,
+        titulo: 'Título del Artículo Reciente 1',
+        contenido: 'Contenido del artículo reciente 1...',
+        imagen: 'imagen1.jpg'
+    },
+    {
+        id: 2,
+        titulo: 'Título del Artículo Reciente 2',
+        contenido: 'Contenido del artículo reciente 2...',
+        imagen: 'imagen2.jpg'
+    },
+    {
+        id: 3,
+        titulo: 'Título del Artículo de Noticias 1',
+        contenido: 'Contenido del artículo de noticias 1...',
+        imagen: 'imagen3.jpg'
+    },
+    {
+        id: 4,
+        titulo: 'Título del Artículo de Noticias 2',
+        contenido: 'Contenido del artículo de noticias 2...',
+        imagen: 'imagen4.jpg'
+    }
 ];
 
-module.exports = componentes;
+// Endpoint para obtener todas las noticias
+router.get('/', (req, res) => {
+    res.json(noticias);
+});
+
+module.exports = router;

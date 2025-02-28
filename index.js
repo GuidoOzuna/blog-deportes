@@ -1,17 +1,19 @@
 const express = require('express');
-const cors = require('cors');
-const componentes = require('./componentes');
-
 const app = express();
-const PORT = 3000;
+const port = 3000;
+const noticiasRouter = require('./noticias');
 
-app.use(cors());
+// Configuración de middleware para servir archivos estáticos
 app.use(express.static('public'));
 
-app.get('/api/componentes', (req, res) => {
-  res.json(componentes);
+// Rutas
+app.use('/api/noticias', noticiasRouter);
+
+// Ruta principal
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
 });

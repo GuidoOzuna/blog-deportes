@@ -1,33 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog de Componentes Electrónicos</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periódico Informativo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .search-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .article {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .article img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll("nav a");
+            const content = document.querySelector(".content");
+
+            function cargarNoticias(seccion) {
+                fetch('/api/noticias')
+                    .then(response => response.json())
+                    .then(data => {
+                        content.innerHTML = ''; // Limpiar el contenido
+                        data.forEach(noticia => {
+                            if (seccion === 'home' && noticia.id <= 2 || seccion === 'news') {
+                                const article = document.createElement('div');
+                                article.classList.add('article');
+                                article.innerHTML = `
+                                    <h2>${noticia.titulo}</h2>
+                                    <img src="${noticia.imagen}" alt="Imagen del artículo">
+                                    <p>${noticia.contenido}</p>
+                                `;
+                                content.appendChild(article);
+                            }
+                        });
+                    });
+            }
+
+            links.forEach(link => {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const seccion = this.getAttribute("href").substring(1);
+                    cargarNoticias(seccion);
+                });
+            });
+
+            // Cargar las noticias recientes en la página de inicio
+            cargarNoticias('home');
+        });
+    </script>
 </head>
 <body>
-  <header>
-    <h1>Blog de Componentes Electrónicos</h1>
+    <header>
+        <h1>Periódico Informativo</h1>
+    </header>
     <nav>
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Componentes</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
+        <a href="#home">Inicio</a>
+        <a href="#news">Noticias</a>
+        <a href="#contact">Contacto</a>
+        <a href="#about">Acerca de</a>
     </nav>
-  </header>
-  <main>
-    <section id="buscador">
-      <input type="text" id="buscar" placeholder="Buscar componente...">
-    </section>
-    <section id="lista-componentes">
-      <!-- Los componentes serán cargados aquí por script.js -->
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Blog de Componentes Electrónicos</p>
-  </footer>
-  <script src="script.js"></script>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar...">
+    </div>
+    <div class="content">
+        <!-- Contenido cargado dinámicamente -->
+    </div>
+    <footer>
+        <p>&copy; 2025 Periódico Informativo. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
