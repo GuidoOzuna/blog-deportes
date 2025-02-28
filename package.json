@@ -1,19 +1,14 @@
 {
   "name": "blog-noticias",
   "version": "1.0.0",
-  "description": "API REST para un blog de noticias de componentes electronicos",
+  "description": "Un periódico informativo moderno con noticias dinámicas",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node index.js"
   },
-  "author": "Gromorg",
+  "author": "Tu Nombre",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
+    "express": "^4.17.1"
   }
 }
